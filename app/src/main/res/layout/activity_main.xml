@@ -27,7 +27,6 @@
                 android:inputType="text"
                 android:textAlignment="center" />
 
-
             <TextView
                 android:id="@+id/team_a_score"
                 android:layout_width="wrap_content"
@@ -47,40 +46,111 @@
                 android:onClick="score3PointsTeamA"
                 android:text="Goal" />
 
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:onClick="score2PointsTeamA"
-                android:text="Shots" />
+                android:layout_height="wrap_content">
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:onClick="score2PointsTeamA"
-                android:text="Shots on goal" />
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:onClick="score2PointsTeamA"
+                    android:text="Shot" />
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:onClick="score1PointsTeamA"
-                android:text="Foul" />
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:text="0"
+                    android:textSize="24sp" />
+            </LinearLayout>
 
-            <Button
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:onClick="score1PointsTeamA"
-                android:text="Yellow Card" />
+                android:layout_height="wrap_content">
 
-            <Button
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_weight="5"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:onClick="score2PointsTeamA"
+                    android:text="Shot on goal" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:text="0"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="2dp"
-                android:onClick="score1PointsTeamA"
-                android:text="Red Card" />
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:layout_margin="2dp"
+                    android:onClick="score1PointsTeamA"
+                    android:text="Foul" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:text="0"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="2dp"
+                    android:layout_weight="5"
+                    android:onClick="score1PointsTeamA"
+                    android:text="Yellow Card" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:text="0"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:layout_margin="2dp"
+                    android:onClick="score1PointsTeamA"
+                    android:text="Red Card" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="4dp"
+                    android:text="0"
+                    android:textSize="24sp" />
+
+            </LinearLayout>
         </LinearLayout>
 
         <View
@@ -182,8 +252,8 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
                     android:layout_margin="2dp"
+                    android:layout_weight="5"
                     android:onClick="score1PointsTeamB"
                     android:text="Foul" />
             </LinearLayout>
@@ -203,8 +273,8 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
                     android:layout_margin="2dp"
+                    android:layout_weight="5"
                     android:onClick="score1PointsTeamB"
                     android:text="Yellow Card" />
             </LinearLayout>
@@ -224,8 +294,8 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
                     android:layout_margin="2dp"
+                    android:layout_weight="5"
                     android:onClick="score1PointsTeamB"
                     android:text="Red Card" />
             </LinearLayout>

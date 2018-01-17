@@ -3,11 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <Chronometer
+        android:id="@+id/timer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:id="@+id/timer" />
+        android:textColor="@color/colorPrimaryDark"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,8 +22,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
 
             <EditText
                 android:id="@+id/team_a"
@@ -48,6 +51,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="2dp"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:onClick="scoreTeamA"
                 android:text="Goal" />
 
@@ -57,9 +61,9 @@
 
                 <Button
                     android:layout_width="0dp"
-                    android:layout_weight="5"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
+                    android:layout_weight="4"
                     android:onClick="shotTeamA"
                     android:text="Shot" />
 
@@ -67,10 +71,13 @@
                     android:id="@+id/team_a_shot"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
                     android:text="0"
-                    android:textSize="24sp" />
+                    android:textAlignment="center"
+                    android:textColor="@color/scoreText"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -79,9 +86,9 @@
 
                 <Button
                     android:layout_width="0dp"
-                    android:layout_weight="5"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
+                    android:layout_weight="4"
                     android:onClick="shotOnGoalTeamA"
                     android:text="Shot on goal" />
 
@@ -89,10 +96,13 @@
                     android:id="@+id/team_a_shot_on_goal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
                     android:text="0"
-                    android:textSize="24sp" />
+                    android:textAlignment="center"
+                    android:textColor="@color/scoreText"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -102,8 +112,8 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
                     android:layout_margin="2dp"
+                    android:layout_weight="4"
                     android:onClick="foulTeamA"
                     android:text="Foul" />
 
@@ -111,10 +121,13 @@
                     android:id="@+id/team_a_foul"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
                     android:text="0"
-                    android:textSize="24sp" />
+                    android:textAlignment="center"
+                    android:textColor="@color/scoreText"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -125,7 +138,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
-                    android:layout_weight="5"
+                    android:layout_weight="4"
                     android:onClick="yellowCardTeamA"
                     android:text="Yellow Card" />
 
@@ -133,10 +146,13 @@
                     android:id="@+id/team_a_yellow_card"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
                     android:text="0"
-                    android:textSize="24sp" />
+                    android:textAlignment="center"
+                    android:textColor="@color/scoreText"
+                    android:textSize="20sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -146,8 +162,8 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="5"
                     android:layout_margin="2dp"
+                    android:layout_weight="4"
                     android:onClick="redCardTeamA"
                     android:text="Red Card" />
 
@@ -155,10 +171,13 @@
                     android:id="@+id/team_a_red_card"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
                     android:text="0"
-                    android:textSize="24sp" />
+                    android:textAlignment="center"
+                    android:textColor="@color/scoreText"
+                    android:textSize="20sp" />
 
             </LinearLayout>
         </LinearLayout>
@@ -173,8 +192,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp">
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
 
             <EditText
                 android:id="@+id/team_b"
@@ -200,8 +219,8 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
                 android:layout_margin="2dp"
+                android:backgroundTint="@color/colorPrimaryDark"
                 android:onClick="scoreTeamB"
                 android:text="Goal" />
 
@@ -213,16 +232,19 @@
                     android:id="@+id/team_b_shot"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
                     android:text="0"
-                    android:textSize="24sp" />
+                    android:textAlignment="center"
+                    android:textColor="@color/scoreText"
+                    android:textSize="20sp" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
-                    android:layout_weight="5"
+                    android:layout_weight="4"
                     android:onClick="shotTeamB"
                     android:text="Shot" />
             </LinearLayout>
@@ -235,16 +257,19 @@
                     android:id="@+id/team_b_shot_on_goal"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
                     android:text="0"
-                    android:textSize="24sp" />
+                    android:textAlignment="center"
+                    android:textColor="@color/scoreText"
+                    android:textSize="20sp" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
-                    android:layout_weight="5"
+                    android:layout_weight="4"
                     android:onClick="shotOnGoalTeamB"
                     android:text="Shot on goal" />
             </LinearLayout>
@@ -257,16 +282,19 @@
                     android:id="@+id/team_b_foul"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
                     android:text="0"
-                    android:textSize="24sp" />
+                    android:textAlignment="center"
+                    android:textColor="@color/scoreText"
+                    android:textSize="20sp" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
-                    android:layout_weight="5"
+                    android:layout_weight="4"
                     android:onClick="foulTeamB"
                     android:text="Foul" />
             </LinearLayout>
@@ -279,18 +307,23 @@
                     android:id="@+id/team_b_yellow_card"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
                     android:text="0"
-                    android:textSize="24sp" />
+                    android:textAlignment="center"
+                    android:textColor="@color/scoreText"
+                    android:textSize="20sp" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_margin="2dp"
-                    android:layout_weight="5"
+                    android:layout_weight="4"
                     android:onClick="yellowCardTeamB"
-                    android:text="Yellow Card" />
+                    android:text="Yellow Card"
+                    android:textAlignment="center" />
             </LinearLayout>
 
             <LinearLayout
@@ -301,16 +334,19 @@
                     android:id="@+id/team_b_red_card"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
                     android:text="0"
-                    android:textSize="24sp" />
+                    android:textAlignment="center"
+                    android:textColor="@color/scoreText"
+                    android:textSize="20sp" />
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="2dp"
-                    android:layout_weight="5"
+                    android:layout_weight="4"
                     android:onClick="redCardTeamB"
                     android:text="Red Card" />
             </LinearLayout>
@@ -330,6 +366,7 @@
             android:layout_marginBottom="4dp"
             android:onClick="resetScore"
             android:text="Reset" />
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

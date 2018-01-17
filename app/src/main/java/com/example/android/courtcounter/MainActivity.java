@@ -9,8 +9,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    String teamA = "";
-    String teamB = "";
+    String teamA = "Team A";
+    String teamB = "Team B";
     /**
      * Score variables
      */
@@ -52,9 +52,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public void scoreTeamA (View view) {
         goalsTeamA = goalsTeamA + 1;
+        shotsOnGoalTeamA = shotsOnGoalTeamA + 1;
         String currentTime = getTime(view);
         liveText(currentTime + " - " + teamA + " scored a goal.");
         displayScoreTeamA(goalsTeamA);
+        displayShotsOnGoalTeamA(shotsOnGoalTeamA);
     }
     public void shotTeamA (View view) {
         shotsTeamA = shotsTeamA + 1;
@@ -91,9 +93,11 @@ public class MainActivity extends AppCompatActivity {
      */
     public void scoreTeamB (View view) {
         goalsTeamB = goalsTeamB + 1;
+        shotsOnGoalTeamB = shotsOnGoalTeamB + 1;
         String currentTime = getTime(view);
         liveText(currentTime + " - " + teamB + " scored a goal");
         displayScoreTeamB(goalsTeamB);
+        displayShotsOnGoalTeamB(shotsOnGoalTeamB);
     }
     public void shotTeamB (View view) {
         shotsTeamB = shotsTeamB + 1;
@@ -129,8 +133,15 @@ public class MainActivity extends AppCompatActivity {
      * Start match.
      */
     public void startMatch(View view) {
-        teamA = getTeamA(view);
-        teamB = getTeamB(view);
+        // Check if team A is set
+        if (getTeamA(view).length()>0) {
+            teamA = getTeamA(view);
+        }
+        // Check if team B is set
+        if (getTeamB(view).length()>0) {
+            teamB = getTeamB(view);
+        }
+        liveText("The match between " + teamA + " and " + teamB + " begins.");
         Chronometer time = findViewById(R.id.timer);
         time.setBase(SystemClock.elapsedRealtime());
         time.start();

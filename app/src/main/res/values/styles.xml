@@ -7,6 +7,5 @@
         <item name="colorButtonNormal">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="android:textColor">@color/text</item>
-        <item name="android:background">@color/background</item>
     </style>
 </resources>

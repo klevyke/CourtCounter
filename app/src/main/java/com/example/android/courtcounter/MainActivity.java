@@ -1,9 +1,11 @@
 package com.example.android.courtcounter;
 
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -99,6 +101,14 @@ public class MainActivity extends AppCompatActivity {
         displayRedCardsTeamB(redCardsTeamB);
     }
     /**
+     * Start match.
+     */
+    public void startMatch(View view) {
+        Chronometer time = findViewById(R.id.timer);
+        time.setBase(SystemClock.elapsedRealtime());
+        time.start();
+    }
+    /**
      * Reset scores.
      */
     public void resetScore(View view) {
@@ -126,6 +136,12 @@ public class MainActivity extends AppCompatActivity {
         displayRedCardsTeamA(redCardsTeamA);
         redCardsTeamB = 0;
         displayRedCardsTeamB(redCardsTeamB);
+        /**
+         * Stop the timer and set to 0;
+         */
+        Chronometer time = findViewById(R.id.timer);
+        time.setBase(SystemClock.elapsedRealtime());
+        time.stop();
     }
     /**
      * Displays the given score for Team A.

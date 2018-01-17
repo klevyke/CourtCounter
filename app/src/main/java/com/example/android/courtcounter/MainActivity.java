@@ -9,6 +9,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+    static final String STATE_SCORETEAMA = "goalsTeamA";
+    static final String STATE_SCORETEAMB = "goalsTeamB";
+
     String teamA = "Team A";
     String teamB = "Team B";
     /**
@@ -46,6 +49,27 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+    }
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Save the user's current score state
+        savedInstanceState.putInt(STATE_SCORETEAMA, goalsTeamA);
+        savedInstanceState.putInt(STATE_SCORETEAMB, goalsTeamB);
+
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+    }
+
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can restore the view hierarchy
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Restore state members from saved instance
+        goalsTeamA = savedInstanceState.getInt(STATE_SCORETEAMA);
+        goalsTeamB = savedInstanceState.getInt(STATE_SCORETEAMB);
+
+        displayScoreTeamA(goalsTeamA);
+        displayScoreTeamB(goalsTeamB);
     }
     /**
      * Add points for Team A.

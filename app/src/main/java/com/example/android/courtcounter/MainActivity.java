@@ -1,5 +1,6 @@
 package com.example.android.courtcounter;
 
+import android.content.res.Resources;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,12 +9,24 @@ import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
+
     static final String STATE_SCORETEAMA = "goalsTeamA";
     static final String STATE_SCORETEAMB = "goalsTeamB";
 
-    String teamA = "Team A";
-    String teamB = "Team B";
+    /**
+     * Resource variable for strings
+     */
+    android.content.res.Resources res;
+
+    /**
+     * Default team names
+     */
+    String teamA;
+    String teamB;
+
     /**
      * Score variables
      */
@@ -44,11 +57,47 @@ public class MainActivity extends AppCompatActivity {
      */
     int redCardsTeamA = 0;
     int redCardsTeamB = 0;
+    /**
+     * TextView variables
+     */
+    TextView scoreViewTeamA;
+    TextView scoreViewTeamB;
+    TextView shotsViewTeamA;
+    TextView shotsViewTeamB;
+    TextView shotsOnGoalViewTeamA;
+    TextView shotsOnGoalViewTeamB;
+    TextView foulsViewTeamA;
+    TextView foulsViewTeamB;
+    TextView yellowCardsViewTeamA;
+    TextView yellowCardsViewTeamB;
+    TextView redCardsViewTeamA;
+    TextView redCardsViewTeamB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Set the resource variable
+        res = getResources();
+
+        // Set default team names
+        teamA = res.getString(R.string.team_a);
+        teamB = res.getString(R.string.team_b);
+
+        // Set the TexView variables
+        scoreViewTeamA = (TextView) findViewById(R.id.team_a_score);
+        scoreViewTeamB = (TextView) findViewById(R.id.team_b_score);
+        shotsViewTeamA = (TextView) findViewById(R.id.team_a_shot);
+        shotsViewTeamB = (TextView) findViewById(R.id.team_b_shot);
+        shotsOnGoalViewTeamA = (TextView) findViewById(R.id.team_a_shot_on_goal);
+        shotsOnGoalViewTeamB = (TextView) findViewById(R.id.team_b_shot_on_goal);
+        foulsViewTeamA = (TextView) findViewById(R.id.team_a_foul);
+        foulsViewTeamB = (TextView) findViewById(R.id.team_b_foul);
+        yellowCardsViewTeamA = (TextView) findViewById(R.id.team_a_yellow_card);
+        yellowCardsViewTeamB = (TextView) findViewById(R.id.team_b_yellow_card);
+        redCardsViewTeamA = (TextView) findViewById(R.id.team_a_red_card);
+        redCardsViewTeamB = (TextView) findViewById(R.id.team_b_red_card);
     }
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -78,38 +127,38 @@ public class MainActivity extends AppCompatActivity {
         goalsTeamA = goalsTeamA + 1;
         shotsOnGoalTeamA = shotsOnGoalTeamA + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - " + teamA + " scored a goal.");
+        liveText(res.getString(R.string.scored, currentTime, teamA));
         displayScoreTeamA(goalsTeamA);
         displayShotsOnGoalTeamA(shotsOnGoalTeamA);
     }
     public void shotTeamA (View view) {
         shotsTeamA = shotsTeamA + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - " + teamA + " shots, but misses the target. ");
+        liveText(res.getString(R.string.shoots, currentTime, teamA));
         displayShotsTeamA(shotsTeamA);
     }
     public void shotOnGoalTeamA (View view) {
         shotsOnGoalTeamA = shotsOnGoalTeamA + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - Dangerous shot to the target by " + teamA + ", but no goal. ");
+        liveText(res.getString(R.string.shoots_on_goal, currentTime, teamA));
         displayShotsOnGoalTeamA(shotsOnGoalTeamA);
     }
     public void foulTeamA (View view) {
         foulsTeamA = foulsTeamA + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - Foul commited by " + teamA + ". Dirty play");
+        liveText(res.getString(R.string.foul_commited, currentTime, teamA));
         displayFoulsTeamA(foulsTeamA);
     }
     public void yellowCardTeamA (View view) {
         yellowCardsTeamA = yellowCardsTeamA + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - It'a a yellow for " + teamA + ". The referee is always right.");
+        liveText(res.getString(R.string.yellow_card_shown, currentTime, teamA));
         displayYellowCardsTeamA(yellowCardsTeamA);
     }
     public void redCardTeamA (View view) {
         redCardsTeamA = redCardsTeamA + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - Oh, no. Its a red one for " + teamA + ".");
+        liveText(res.getString(R.string.red_card_shown, currentTime, teamA));
         displayRedCardsTeamA(redCardsTeamA);
     }
     /**
@@ -119,38 +168,38 @@ public class MainActivity extends AppCompatActivity {
         goalsTeamB = goalsTeamB + 1;
         shotsOnGoalTeamB = shotsOnGoalTeamB + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - " + teamB + " scored a goal");
+        liveText(res.getString(R.string.scored, currentTime, teamB));
         displayScoreTeamB(goalsTeamB);
         displayShotsOnGoalTeamB(shotsOnGoalTeamB);
     }
     public void shotTeamB (View view) {
         shotsTeamB = shotsTeamB + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - " + teamB + " shots, but misses the target. ");
+        liveText(res.getString(R.string.shoots, currentTime, teamB));
         displayShotsTeamB(shotsTeamB);
     }
     public void shotOnGoalTeamB (View view) {
         shotsOnGoalTeamB = shotsOnGoalTeamB + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - Dangerous shot to the target by " + teamB + ", but no goal. ");
+        liveText(res.getString(R.string.shoots_on_goal, currentTime, teamB));
         displayShotsOnGoalTeamB(shotsOnGoalTeamB);
     }
     public void foulTeamB (View view) {
         foulsTeamB = foulsTeamB + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - Foul commited by " + teamB + ". Dirty play");
+        liveText(res.getString(R.string.foul_commited, currentTime, teamB));
         displayFoulsTeamB(foulsTeamB);
     }
     public void yellowCardTeamB (View view) {
         yellowCardsTeamB = yellowCardsTeamB + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - It'a a yellow for " + teamB + ". The referee is always right.");
+        liveText(res.getString(R.string.yellow_card_shown, currentTime, teamB));
         displayYellowCardsTeamB(yellowCardsTeamB);
     }
     public void redCardTeamB (View view) {
         redCardsTeamB = redCardsTeamB + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - Oh, no. Its a red one for " + teamB + ".");
+        liveText(res.getString(R.string.red_card_shown, currentTime, teamA));
         displayRedCardsTeamB(redCardsTeamB);
     }
     /**
@@ -165,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
         if (getTeamB(view).length()>0) {
             teamB = getTeamB(view);
         }
-        liveText("The match between " + teamA + " and " + teamB + " begins.");
+        liveText(res.getString(R.string.match_begins, teamA, teamB));
         Chronometer time = findViewById(R.id.timer);
         time.setBase(SystemClock.elapsedRealtime());
         time.start();
@@ -214,85 +263,73 @@ public class MainActivity extends AppCompatActivity {
      * Displays the given score for Team A.
      */
     public void displayScoreTeamA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_a_score);
-        scoreView.setText(String.valueOf(score));
+        scoreViewTeamA.setText(String.valueOf(score));
     }
     /**
      * Displays the given score for Team B.
      */
     public void displayScoreTeamB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_b_score);
-        scoreView.setText(String.valueOf(score));
+        scoreViewTeamB.setText(String.valueOf(score));
     }
     /**
      * Displays the given shots for Team A.
      */
     public void displayShotsTeamA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_a_shot);
-        scoreView.setText(String.valueOf(score));
+        shotsViewTeamA.setText(String.valueOf(score));
     }
     /**
      * Displays the given shots for Team B.
      */
     public void displayShotsTeamB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_b_shot);
-        scoreView.setText(String.valueOf(score));
+        shotsViewTeamB.setText(String.valueOf(score));
     }
     /**
      * Displays the given shots on goal for Team A.
      */
     public void displayShotsOnGoalTeamA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_a_shot_on_goal);
-        scoreView.setText(String.valueOf(score));
+        shotsOnGoalViewTeamA.setText(String.valueOf(score));
     }
     /**
      * Displays the given shots on goal for Team B.
      */
     public void displayShotsOnGoalTeamB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_b_shot_on_goal);
-        scoreView.setText(String.valueOf(score));
+        shotsOnGoalViewTeamB.setText(String.valueOf(score));
     }
     /**
      * Displays the given fouls for Team A.
      */
     public void displayFoulsTeamA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_a_foul);
-        scoreView.setText(String.valueOf(score));
+        foulsViewTeamA.setText(String.valueOf(score));
     }
     /**
      * Displays the given fouls for Team B.
      */
     public void displayFoulsTeamB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_b_foul);
-        scoreView.setText(String.valueOf(score));
+        foulsViewTeamB.setText(String.valueOf(score));
     }
     /**
      * Displays the given yellow cards for Team A.
      */
     public void displayYellowCardsTeamA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_a_yellow_card);
-        scoreView.setText(String.valueOf(score));
+        yellowCardsViewTeamA.setText(String.valueOf(score));
     }
     /**
      * Displays the given yellow cards for Team B.
      */
     public void displayYellowCardsTeamB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_b_yellow_card);
-        scoreView.setText(String.valueOf(score));
+        yellowCardsViewTeamB.setText(String.valueOf(score));
     }
     /**
      * Displays the given red cards for Team A.
      */
     public void displayRedCardsTeamA(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_a_red_card);
-        scoreView.setText(String.valueOf(score));
+        redCardsViewTeamA.setText(String.valueOf(score));
     }
     /**
      * Displays the given red cards for Team B.
      */
     public void displayRedCardsTeamB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_b_red_card);
-        scoreView.setText(String.valueOf(score));
+        redCardsViewTeamA.setText(String.valueOf(score));
     }
 
     /**

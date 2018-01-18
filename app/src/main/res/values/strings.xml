@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Court Counter</string>
+    <string name="goal">Goal</string>
+    <string name="shot">Shot</string>
+    <string name="shot_on_goal">Shot on goal</string>
+    <string name="foul">Foul</string>
+    <string name="yellow_card">Yellow card</string>
+    <string name="red_card">Red Card</string>
+    <string name="livetext">Livetext</string>
+    <string name="reset">Reset</string>
+    <string name="start">Start</string>
+    <string name="team_a">Team A</string>
+    <string name="team_b">Team B</string>
+    <string name="zero">0</string>
+    <string name="scored">%s - %s scored a goal.</string>
+    <string name="shoots">%s - %s shots, but misses the target.</string>
+    <string name="shoots_on_goal">%s - Dangerous shot to the target by %s but no goal.</string>
+    <string name="foul_commited">%s - Foul commited by %s. Dirty play</string>
+    <string name="yellow_card_shown">%s - It\'s a yellow for %s. The referee is always right.</string>
+    <string name="red_card_shown">%s - Oh, no. It\'s a red one for %s.</string>
+    <string name="match_begins">The match between %s and %s begins.</string>
 </resources>

@@ -399,6 +399,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/score_table"
         android:background="#004D40"
+        android:layout_margin="4dp"
         android:orientation="vertical">
 
         <TextView
@@ -416,7 +417,8 @@
             android:id="@+id/live_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="" />
+            android:text=""
+            android:layout_margin="4dp"/>
     </LinearLayout>
 
     <LinearLayout

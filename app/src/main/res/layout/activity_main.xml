@@ -58,7 +58,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
+                android:layout_margin="4dp"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:onClick="scoreTeamA"
                 android:text="Goal" />
@@ -70,7 +70,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="4"
                     android:onClick="shotTeamA"
                     android:text="Shot" />
@@ -82,13 +82,14 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
-                    android:shadowColor="@color/colorPrimaryDark"
+                    android:shadowColor="@color/text"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:text="0"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/scoreText"/>
             </LinearLayout>
 
             <LinearLayout
@@ -98,7 +99,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="4"
                     android:onClick="shotOnGoalTeamA"
                     android:text="Shot on goal" />
@@ -110,13 +111,14 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
-                    android:shadowColor="@color/colorPrimaryDark"
+                    android:shadowColor="@color/text"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:text="0"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/scoreText"/>
             </LinearLayout>
 
             <LinearLayout
@@ -126,7 +128,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="4"
                     android:onClick="foulTeamA"
                     android:text="Foul" />
@@ -138,13 +140,14 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
-                    android:shadowColor="@color/colorPrimaryDark"
+                    android:shadowColor="@color/text"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:text="0"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/scoreText"/>
             </LinearLayout>
 
             <LinearLayout
@@ -154,7 +157,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="4"
                     android:onClick="yellowCardTeamA"
                     android:text="Yellow Card" />
@@ -166,13 +169,14 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
-                    android:shadowColor="@color/colorPrimaryDark"
+                    android:shadowColor="@color/text"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:text="0"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/scoreText"/>
             </LinearLayout>
 
             <LinearLayout
@@ -182,7 +186,7 @@
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="4"
                     android:onClick="redCardTeamA"
                     android:text="Red Card" />
@@ -194,13 +198,14 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
-                    android:shadowColor="@color/colorPrimaryDark"
+                    android:shadowColor="@color/text"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:text="0"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/scoreText"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -245,7 +250,7 @@
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="2dp"
+                android:layout_margin="4dp"
                 android:backgroundTint="@color/colorPrimaryDark"
                 android:onClick="scoreTeamB"
                 android:text="Goal" />
@@ -261,18 +266,19 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
-                    android:shadowColor="@color/colorPrimaryDark"
+                    android:shadowColor="@color/text"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:text="0"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/scoreText"/>
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="4"
                     android:onClick="shotTeamB"
                     android:text="Shot" />
@@ -289,18 +295,19 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
-                    android:shadowColor="@color/colorPrimaryDark"
+                    android:shadowColor="@color/text"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:text="0"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/scoreText"/>
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="4"
                     android:onClick="shotOnGoalTeamB"
                     android:text="Shot on goal" />
@@ -317,18 +324,19 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
-                    android:shadowColor="@color/colorPrimaryDark"
+                    android:shadowColor="@color/text"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:text="0"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/scoreText"/>
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="4"
                     android:onClick="foulTeamB"
                     android:text="Foul" />
@@ -345,19 +353,20 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
-                    android:shadowColor="@color/colorPrimaryDark"
+                    android:shadowColor="@color/text"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:text="0"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/scoreText"/>
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_margin="2dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="4"
                     android:onClick="yellowCardTeamB"
                     android:text="Yellow Card"
@@ -375,18 +384,19 @@
                     android:layout_gravity="center"
                     android:layout_weight="1"
                     android:padding="4dp"
-                    android:shadowColor="@color/colorPrimaryDark"
+                    android:shadowColor="@color/text"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:text="0"
                     android:textAlignment="center"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:textColor="@color/scoreText"/>
 
                 <Button
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
+                    android:layout_margin="4dp"
                     android:layout_weight="4"
                     android:onClick="redCardTeamB"
                     android:text="Red Card" />
@@ -399,7 +409,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/score_table"
         android:background="#004D40"
-        android:layout_margin="4dp"
         android:orientation="vertical">
 
         <TextView
@@ -417,8 +426,7 @@
             android:id="@+id/live_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            android:layout_margin="4dp"/>
+            android:text="" />
     </LinearLayout>
 
     <LinearLayout

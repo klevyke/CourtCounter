@@ -4,6 +4,6 @@
     <color name="colorPrimaryDark">#00796B</color>
     <color name="colorAccent">#00796B</color>
     <color name="text">#FFF</color>
-    <color name="scoreText">#009688</color>
+    <color name="scoreText">#004D40</color>
     <color name="background">#E0F2F1</color>
 </resources>

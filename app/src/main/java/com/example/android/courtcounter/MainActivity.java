@@ -1,5 +1,6 @@
 package com.example.android.courtcounter;
 
+import android.content.res.Resources;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,9 +9,18 @@ import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.util.Set;
+
 public class MainActivity extends AppCompatActivity {
-    String teamA = "Team A";
-    String teamB = "Team B";
+    /**
+     * Resource variable for strings
+     */
+    android.content.res.Resources res;
+    /**
+     * Default team names
+     */
+    String teamA;
+    String teamB;
     /**
      * Score variables
      */
@@ -46,6 +56,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Set the resource variable
+        res = getResources();
+
+        // Set default team names
+        teamA = res.getString(R.string.team_a);
+        teamB = res.getString(R.string.team_b);
     }
     /**
      * Add points for Team A.
@@ -54,38 +71,38 @@ public class MainActivity extends AppCompatActivity {
         goalsTeamA = goalsTeamA + 1;
         shotsOnGoalTeamA = shotsOnGoalTeamA + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - " + teamA + " scored a goal.");
+        liveText(res.getString(R.string.scored, currentTime, teamA));
         displayScoreTeamA(goalsTeamA);
         displayShotsOnGoalTeamA(shotsOnGoalTeamA);
     }
     public void shotTeamA (View view) {
         shotsTeamA = shotsTeamA + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - " + teamA + " shots, but misses the target. ");
+        liveText(res.getString(R.string.shoots, currentTime, teamA));
         displayShotsTeamA(shotsTeamA);
     }
     public void shotOnGoalTeamA (View view) {
         shotsOnGoalTeamA = shotsOnGoalTeamA + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - Dangerous shot to the target by " + teamA + ", but no goal. ");
+        liveText(res.getString(R.string.shoots_on_goal, currentTime, teamA));
         displayShotsOnGoalTeamA(shotsOnGoalTeamA);
     }
     public void foulTeamA (View view) {
         foulsTeamA = foulsTeamA + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - Foul commited by " + teamA + ". Dirty play");
+        liveText(res.getString(R.string.foul_commited, currentTime, teamA));
         displayFoulsTeamA(foulsTeamA);
     }
     public void yellowCardTeamA (View view) {
         yellowCardsTeamA = yellowCardsTeamA + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - It'a a yellow for " + teamA + ". The referee is always right.");
+        liveText(res.getString(R.string.yellow_card_shown, currentTime, teamA));
         displayYellowCardsTeamA(yellowCardsTeamA);
     }
     public void redCardTeamA (View view) {
         redCardsTeamA = redCardsTeamA + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - Oh, no. Its a red one for " + teamA + ".");
+        liveText(res.getString(R.string.red_card_shown, currentTime, teamA));
         displayRedCardsTeamA(redCardsTeamA);
     }
     /**
@@ -95,38 +112,38 @@ public class MainActivity extends AppCompatActivity {
         goalsTeamB = goalsTeamB + 1;
         shotsOnGoalTeamB = shotsOnGoalTeamB + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - " + teamB + " scored a goal");
+        liveText(res.getString(R.string.scored, currentTime, teamB));
         displayScoreTeamB(goalsTeamB);
         displayShotsOnGoalTeamB(shotsOnGoalTeamB);
     }
     public void shotTeamB (View view) {
         shotsTeamB = shotsTeamB + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - " + teamB + " shots, but misses the target. ");
+        liveText(res.getString(R.string.shoots, currentTime, teamB));
         displayShotsTeamB(shotsTeamB);
     }
     public void shotOnGoalTeamB (View view) {
         shotsOnGoalTeamB = shotsOnGoalTeamB + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - Dangerous shot to the target by " + teamB + ", but no goal. ");
+        liveText(res.getString(R.string.shoots_on_goal, currentTime, teamB));
         displayShotsOnGoalTeamB(shotsOnGoalTeamB);
     }
     public void foulTeamB (View view) {
         foulsTeamB = foulsTeamB + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - Foul commited by " + teamB + ". Dirty play");
+        liveText(res.getString(R.string.foul_commited, currentTime, teamB));
         displayFoulsTeamB(foulsTeamB);
     }
     public void yellowCardTeamB (View view) {
         yellowCardsTeamB = yellowCardsTeamB + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - It'a a yellow for " + teamB + ". The referee is always right.");
+        liveText(res.getString(R.string.yellow_card_shown, currentTime, teamB));
         displayYellowCardsTeamB(yellowCardsTeamB);
     }
     public void redCardTeamB (View view) {
         redCardsTeamB = redCardsTeamB + 1;
         String currentTime = getTime(view);
-        liveText(currentTime + " - Oh, no. Its a red one for " + teamB + ".");
+        liveText(res.getString(R.string.red_card_shown, currentTime, teamA));
         displayRedCardsTeamB(redCardsTeamB);
     }
     /**
@@ -141,7 +158,7 @@ public class MainActivity extends AppCompatActivity {
         if (getTeamB(view).length()>0) {
             teamB = getTeamB(view);
         }
-        liveText("The match between " + teamA + " and " + teamB + " begins.");
+        liveText(res.getString(R.string.match_begins, teamA, teamB));
         Chronometer time = findViewById(R.id.timer);
         time.setBase(SystemClock.elapsedRealtime());
         time.start();

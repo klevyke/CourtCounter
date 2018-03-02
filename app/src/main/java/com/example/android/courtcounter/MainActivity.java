@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     static final String STATE_YELLOWCARDSTEAMB = "yellowCardsTeamB";
     static final String STATE_REDCARDSTEAMA = "redCardsTeamA";
     static final String STATE_REDCARDSTEAMB = "redCardsTeamB";
+    static final String STATE_LIVETEXT = "liveText";
 
     /**
      * Resource variable for strings
@@ -68,6 +69,10 @@ public class MainActivity extends AppCompatActivity {
     int redCardsTeamA = 0;
     int redCardsTeamB = 0;
     /**
+     * LiveText variable
+     */
+    CharSequence liveText = "";
+    /**
      * TextView variables
      */
     TextView scoreViewTeamA;
@@ -82,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
     TextView yellowCardsViewTeamB;
     TextView redCardsViewTeamA;
     TextView redCardsViewTeamB;
+    TextView liveTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,9 +114,14 @@ public class MainActivity extends AppCompatActivity {
         yellowCardsViewTeamB = (TextView) findViewById(R.id.team_b_yellow_card);
         redCardsViewTeamA = (TextView) findViewById(R.id.team_a_red_card);
         redCardsViewTeamB = (TextView) findViewById(R.id.team_b_red_card);
+        liveTextView = (TextView) findViewById(R.id.live_text);
     }
+
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
+        // Always call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+
         // Save the user's current score state
         savedInstanceState.putInt(STATE_SCORETEAMA, goalsTeamA);
         savedInstanceState.putInt(STATE_SCORETEAMB, goalsTeamB);
@@ -118,15 +129,13 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putInt(STATE_SHOTSTEAMB, shotsTeamB);
         savedInstanceState.putInt(STATE_SHOTSONGOALTEAMA, shotsOnGoalTeamA);
         savedInstanceState.putInt(STATE_SHOTSONGOALTEAMB, shotsOnGoalTeamB);
-        savedInstanceState.putInt(STATE_FOULSTEAMA, shotsTeamA);
-        savedInstanceState.putInt(STATE_FOULSTEAMB, shotsTeamB);
-        savedInstanceState.putInt(STATE_YELLOWCARDSTEAMA, shotsTeamA);
-        savedInstanceState.putInt(STATE_YELLOWCARDSTEAMB, shotsTeamB);
-        savedInstanceState.putInt(STATE_REDCARDSTEAMA, shotsTeamA);
-        savedInstanceState.putInt(STATE_REDCARDSTEAMB, shotsTeamB);
-
-        // Always call the superclass so it can save the view hierarchy state
-        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putInt(STATE_FOULSTEAMA, foulsTeamA);
+        savedInstanceState.putInt(STATE_FOULSTEAMB, foulsTeamB);
+        savedInstanceState.putInt(STATE_YELLOWCARDSTEAMA, yellowCardsTeamA);
+        savedInstanceState.putInt(STATE_YELLOWCARDSTEAMB, yellowCardsTeamB);
+        savedInstanceState.putInt(STATE_REDCARDSTEAMA, redCardsTeamA);
+        savedInstanceState.putInt(STATE_REDCARDSTEAMB, redCardsTeamB);
+        savedInstanceState.putCharSequence(STATE_LIVETEXT, liveText);
     }
 
     public void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -143,9 +152,10 @@ public class MainActivity extends AppCompatActivity {
         foulsTeamA = savedInstanceState.getInt(STATE_FOULSTEAMA);
         foulsTeamB = savedInstanceState.getInt(STATE_FOULSTEAMB);
         yellowCardsTeamA = savedInstanceState.getInt(STATE_YELLOWCARDSTEAMA);
-        yellowCardsTeamB = savedInstanceState.getInt(STATE_YELLOWCARDSTEAMA);
+        yellowCardsTeamB = savedInstanceState.getInt(STATE_YELLOWCARDSTEAMB);
         redCardsTeamA = savedInstanceState.getInt(STATE_REDCARDSTEAMA);
         redCardsTeamB = savedInstanceState.getInt(STATE_REDCARDSTEAMB);
+        liveText = savedInstanceState.getCharSequence(STATE_LIVETEXT);
 
         displayScoreTeamA(goalsTeamA);
         displayScoreTeamB(goalsTeamB);
@@ -159,6 +169,7 @@ public class MainActivity extends AppCompatActivity {
         displayYellowCardsTeamB(yellowCardsTeamB);
         displayRedCardsTeamA(redCardsTeamA);
         displayRedCardsTeamB(redCardsTeamB);
+        updateLiveText(liveText);
     }
     /**
      * Add points for Team A.
@@ -167,38 +178,38 @@ public class MainActivity extends AppCompatActivity {
         goalsTeamA = goalsTeamA + 1;
         shotsOnGoalTeamA = shotsOnGoalTeamA + 1;
         String currentTime = getTime(view);
-        liveText(res.getString(R.string.scored, currentTime, teamA));
+        updateLiveText(res.getString(R.string.scored, currentTime, teamA));
         displayScoreTeamA(goalsTeamA);
         displayShotsOnGoalTeamA(shotsOnGoalTeamA);
     }
     public void shotTeamA (View view) {
         shotsTeamA = shotsTeamA + 1;
         String currentTime = getTime(view);
-        liveText(res.getString(R.string.shoots, currentTime, teamA));
+        updateLiveText(res.getString(R.string.shoots, currentTime, teamA));
         displayShotsTeamA(shotsTeamA);
     }
     public void shotOnGoalTeamA (View view) {
         shotsOnGoalTeamA = shotsOnGoalTeamA + 1;
         String currentTime = getTime(view);
-        liveText(res.getString(R.string.shoots_on_goal, currentTime, teamA));
+        updateLiveText(res.getString(R.string.shoots_on_goal, currentTime, teamA));
         displayShotsOnGoalTeamA(shotsOnGoalTeamA);
     }
     public void foulTeamA (View view) {
         foulsTeamA = foulsTeamA + 1;
         String currentTime = getTime(view);
-        liveText(res.getString(R.string.foul_commited, currentTime, teamA));
+        updateLiveText(res.getString(R.string.foul_commited, currentTime, teamA));
         displayFoulsTeamA(foulsTeamA);
     }
     public void yellowCardTeamA (View view) {
         yellowCardsTeamA = yellowCardsTeamA + 1;
         String currentTime = getTime(view);
-        liveText(res.getString(R.string.yellow_card_shown, currentTime, teamA));
+        updateLiveText(res.getString(R.string.yellow_card_shown, currentTime, teamA));
         displayYellowCardsTeamA(yellowCardsTeamA);
     }
     public void redCardTeamA (View view) {
         redCardsTeamA = redCardsTeamA + 1;
         String currentTime = getTime(view);
-        liveText(res.getString(R.string.red_card_shown, currentTime, teamA));
+        updateLiveText(res.getString(R.string.red_card_shown, currentTime, teamA));
         displayRedCardsTeamA(redCardsTeamA);
     }
     /**
@@ -208,38 +219,38 @@ public class MainActivity extends AppCompatActivity {
         goalsTeamB = goalsTeamB + 1;
         shotsOnGoalTeamB = shotsOnGoalTeamB + 1;
         String currentTime = getTime(view);
-        liveText(res.getString(R.string.scored, currentTime, teamB));
+        updateLiveText(res.getString(R.string.scored, currentTime, teamB));
         displayScoreTeamB(goalsTeamB);
         displayShotsOnGoalTeamB(shotsOnGoalTeamB);
     }
     public void shotTeamB (View view) {
         shotsTeamB = shotsTeamB + 1;
         String currentTime = getTime(view);
-        liveText(res.getString(R.string.shoots, currentTime, teamB));
+        updateLiveText(res.getString(R.string.shoots, currentTime, teamB));
         displayShotsTeamB(shotsTeamB);
     }
     public void shotOnGoalTeamB (View view) {
         shotsOnGoalTeamB = shotsOnGoalTeamB + 1;
         String currentTime = getTime(view);
-        liveText(res.getString(R.string.shoots_on_goal, currentTime, teamB));
+        updateLiveText(res.getString(R.string.shoots_on_goal, currentTime, teamB));
         displayShotsOnGoalTeamB(shotsOnGoalTeamB);
     }
     public void foulTeamB (View view) {
         foulsTeamB = foulsTeamB + 1;
         String currentTime = getTime(view);
-        liveText(res.getString(R.string.foul_commited, currentTime, teamB));
+        updateLiveText(res.getString(R.string.foul_commited, currentTime, teamB));
         displayFoulsTeamB(foulsTeamB);
     }
     public void yellowCardTeamB (View view) {
         yellowCardsTeamB = yellowCardsTeamB + 1;
         String currentTime = getTime(view);
-        liveText(res.getString(R.string.yellow_card_shown, currentTime, teamB));
+        updateLiveText(res.getString(R.string.yellow_card_shown, currentTime, teamB));
         displayYellowCardsTeamB(yellowCardsTeamB);
     }
     public void redCardTeamB (View view) {
         redCardsTeamB = redCardsTeamB + 1;
         String currentTime = getTime(view);
-        liveText(res.getString(R.string.red_card_shown, currentTime, teamA));
+        updateLiveText(res.getString(R.string.red_card_shown, currentTime, teamB));
         displayRedCardsTeamB(redCardsTeamB);
     }
     /**
@@ -254,7 +265,7 @@ public class MainActivity extends AppCompatActivity {
         if (getTeamB(view).length()>0) {
             teamB = getTeamB(view);
         }
-        liveText(res.getString(R.string.match_begins, teamA, teamB));
+        updateLiveText(res.getString(R.string.match_begins, teamA, teamB));
         Chronometer time = findViewById(R.id.timer);
         time.setBase(SystemClock.elapsedRealtime());
         time.start();
@@ -369,7 +380,7 @@ public class MainActivity extends AppCompatActivity {
      * Displays the given red cards for Team B.
      */
     public void displayRedCardsTeamB(int score) {
-        redCardsViewTeamA.setText(String.valueOf(score));
+        redCardsViewTeamB.setText(String.valueOf(score));
     }
 
     /**
@@ -396,8 +407,8 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Update Livetext
      */
-    public void liveText (String text) {
-        TextView scoreView = (TextView) findViewById(R.id.live_text);
-        scoreView.setText( text + "\n" + scoreView.getText());
+    public void updateLiveText (CharSequence text) {
+        liveText = text + "\n" + liveTextView.getText();
+        liveTextView.setText(liveText);
     }
 }

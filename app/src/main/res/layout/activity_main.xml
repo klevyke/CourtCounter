@@ -191,7 +191,7 @@
                     android:layout_margin="4dp"
                     android:layout_weight="4"
                     android:onClick="redCardTeamA"
-                    android:text="Red Card" />
+                    android:text="@string/red_card" />
 
                 <TextView
                     android:id="@+id/team_a_red_card"

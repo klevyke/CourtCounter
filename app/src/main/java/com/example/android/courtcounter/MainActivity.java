@@ -15,6 +15,16 @@ public class MainActivity extends AppCompatActivity {
 
     static final String STATE_SCORETEAMA = "goalsTeamA";
     static final String STATE_SCORETEAMB = "goalsTeamB";
+    static final String STATE_SHOTSTEAMA = "shotsTeamA";
+    static final String STATE_SHOTSTEAMB = "shotsTeamB";
+    static final String STATE_SHOTSONGOALTEAMA = "shotsOnGoalTeamA";
+    static final String STATE_SHOTSONGOALTEAMB = "shotsOnGoalTeamB";
+    static final String STATE_FOULSTEAMA = "foulsTeamA";
+    static final String STATE_FOULSTEAMB = "foulsTeamB";
+    static final String STATE_YELLOWCARDSTEAMA = "yellowCardsTeamA";
+    static final String STATE_YELLOWCARDSTEAMB = "yellowCardsTeamB";
+    static final String STATE_REDCARDSTEAMA = "redCardsTeamA";
+    static final String STATE_REDCARDSTEAMB = "redCardsTeamB";
 
     /**
      * Resource variable for strings
@@ -104,6 +114,16 @@ public class MainActivity extends AppCompatActivity {
         // Save the user's current score state
         savedInstanceState.putInt(STATE_SCORETEAMA, goalsTeamA);
         savedInstanceState.putInt(STATE_SCORETEAMB, goalsTeamB);
+        savedInstanceState.putInt(STATE_SHOTSTEAMA, shotsTeamA);
+        savedInstanceState.putInt(STATE_SHOTSTEAMB, shotsTeamB);
+        savedInstanceState.putInt(STATE_SHOTSONGOALTEAMA, shotsOnGoalTeamA);
+        savedInstanceState.putInt(STATE_SHOTSONGOALTEAMB, shotsOnGoalTeamB);
+        savedInstanceState.putInt(STATE_FOULSTEAMA, shotsTeamA);
+        savedInstanceState.putInt(STATE_FOULSTEAMB, shotsTeamB);
+        savedInstanceState.putInt(STATE_YELLOWCARDSTEAMA, shotsTeamA);
+        savedInstanceState.putInt(STATE_YELLOWCARDSTEAMB, shotsTeamB);
+        savedInstanceState.putInt(STATE_REDCARDSTEAMA, shotsTeamA);
+        savedInstanceState.putInt(STATE_REDCARDSTEAMB, shotsTeamB);
 
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
@@ -116,9 +136,29 @@ public class MainActivity extends AppCompatActivity {
         // Restore state members from saved instance
         goalsTeamA = savedInstanceState.getInt(STATE_SCORETEAMA);
         goalsTeamB = savedInstanceState.getInt(STATE_SCORETEAMB);
+        shotsTeamA = savedInstanceState.getInt(STATE_SHOTSTEAMA);
+        shotsTeamB = savedInstanceState.getInt(STATE_SHOTSTEAMB);
+        shotsOnGoalTeamA = savedInstanceState.getInt(STATE_SHOTSONGOALTEAMA);
+        shotsOnGoalTeamB = savedInstanceState.getInt(STATE_SHOTSONGOALTEAMB);
+        foulsTeamA = savedInstanceState.getInt(STATE_FOULSTEAMA);
+        foulsTeamB = savedInstanceState.getInt(STATE_FOULSTEAMB);
+        yellowCardsTeamA = savedInstanceState.getInt(STATE_YELLOWCARDSTEAMA);
+        yellowCardsTeamB = savedInstanceState.getInt(STATE_YELLOWCARDSTEAMA);
+        redCardsTeamA = savedInstanceState.getInt(STATE_REDCARDSTEAMA);
+        redCardsTeamB = savedInstanceState.getInt(STATE_REDCARDSTEAMB);
 
         displayScoreTeamA(goalsTeamA);
         displayScoreTeamB(goalsTeamB);
+        displayShotsTeamA(shotsTeamA);
+        displayShotsTeamB(shotsTeamB);
+        displayShotsOnGoalTeamA(shotsOnGoalTeamA);
+        displayShotsOnGoalTeamB(shotsOnGoalTeamB);
+        displayFoulsTeamA(foulsTeamA);
+        displayFoulsTeamB(foulsTeamB);
+        displayYellowCardsTeamA(yellowCardsTeamA);
+        displayYellowCardsTeamB(yellowCardsTeamB);
+        displayRedCardsTeamA(redCardsTeamA);
+        displayRedCardsTeamB(redCardsTeamB);
     }
     /**
      * Add points for Team A.

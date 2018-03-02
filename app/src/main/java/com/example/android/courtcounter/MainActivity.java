@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     static final String STATE_REDCARDSTEAMA = "redCardsTeamA";
     static final String STATE_REDCARDSTEAMB = "redCardsTeamB";
     static final String STATE_LIVETEXT = "liveText";
+    static final String STATE_TIME = "time";
 
     /**
      * Resource variable for strings
@@ -73,6 +74,10 @@ public class MainActivity extends AppCompatActivity {
      */
     CharSequence liveText = "";
     /**
+     * Chronometer variable
+     */
+    Chronometer time;
+    /**
      * TextView variables
      */
     TextView scoreViewTeamA;
@@ -115,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         redCardsViewTeamA = (TextView) findViewById(R.id.team_a_red_card);
         redCardsViewTeamB = (TextView) findViewById(R.id.team_b_red_card);
         liveTextView = (TextView) findViewById(R.id.live_text);
+        time = findViewById(R.id.timer);
     }
 
     @Override
@@ -136,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putInt(STATE_REDCARDSTEAMA, redCardsTeamA);
         savedInstanceState.putInt(STATE_REDCARDSTEAMB, redCardsTeamB);
         savedInstanceState.putCharSequence(STATE_LIVETEXT, liveText);
+        savedInstanceState.putLong(STATE_TIME, time.getBase());
     }
 
     public void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -170,6 +177,8 @@ public class MainActivity extends AppCompatActivity {
         displayRedCardsTeamA(redCardsTeamA);
         displayRedCardsTeamB(redCardsTeamB);
         updateLiveText(liveText);
+        time.setBase(savedInstanceState.getLong(STATE_TIME));
+        time.start();
     }
     /**
      * Add points for Team A.
@@ -401,7 +410,6 @@ public class MainActivity extends AppCompatActivity {
      * Get the current time
      */
     public String getTime (View view) {
-        Chronometer time = findViewById(R.id.timer);
         return (String) time.getText();
     }
     /**

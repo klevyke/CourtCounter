@@ -274,26 +274,30 @@ public class MainActivity extends AppCompatActivity {
      * Start match.
      */
     public void startMatch(View view) {
-        // Check if team A is set
-        if (getTeamA(view).length()>0) {
-            teamA = getTeamA(view);
+
+        // Start the match if not started already
+        if (!inProgress) {
+            // Check if team A is set
+            if (getTeamA(view).length() > 0) {
+                teamA = getTeamA(view);
+            }
+            // Check if team B is set
+            if (getTeamB(view).length() > 0) {
+                teamB = getTeamB(view);
+            }
+
+            // Update LiveText
+            updateLiveText(res.getString(R.string.match_begins, teamA, teamB));
+
+            //Start the time
+            Chronometer time = findViewById(R.id.timer);
+            time.setBase(SystemClock.elapsedRealtime());
+            time.start();
+            inProgress = Boolean.TRUE;
+
+            // Enable the Buttons
+            enableButtons();
         }
-        // Check if team B is set
-        if (getTeamB(view).length()>0) {
-            teamB = getTeamB(view);
-        }
-
-        // Update LiveText
-        updateLiveText(res.getString(R.string.match_begins, teamA, teamB));
-
-        //Start the time
-        Chronometer time = findViewById(R.id.timer);
-        time.setBase(SystemClock.elapsedRealtime());
-        time.start();
-        inProgress = Boolean.TRUE;
-
-        // Enable the Buttons
-        enableButtons();
     }
     /**
      * Reset scores.

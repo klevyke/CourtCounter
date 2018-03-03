@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     static final String STATE_REDCARDSTEAMB = "redCardsTeamB";
     static final String STATE_LIVETEXT = "liveText";
     static final String STATE_TIME = "time";
+    static final String STATE_INPROGRESS = "inProgress";
 
     /**
      * Resource variable for strings
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
      * Chronometer variable
      */
     Chronometer time;
+    Boolean inProgress = Boolean.FALSE;
     /**
      * TextView variables
      */
@@ -143,6 +145,7 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putInt(STATE_REDCARDSTEAMB, redCardsTeamB);
         savedInstanceState.putCharSequence(STATE_LIVETEXT, liveText);
         savedInstanceState.putLong(STATE_TIME, time.getBase());
+        savedInstanceState.putBoolean(STATE_INPROGRESS, inProgress);
     }
 
     public void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -177,8 +180,10 @@ public class MainActivity extends AppCompatActivity {
         displayRedCardsTeamA(redCardsTeamA);
         displayRedCardsTeamB(redCardsTeamB);
         updateLiveText(liveText);
-        time.setBase(savedInstanceState.getLong(STATE_TIME));
-        time.start();
+        if (savedInstanceState.getBoolean(STATE_INPROGRESS)) {
+            time.setBase(savedInstanceState.getLong(STATE_TIME));
+            time.start();
+        }
     }
     /**
      * Add points for Team A.
@@ -278,6 +283,7 @@ public class MainActivity extends AppCompatActivity {
         Chronometer time = findViewById(R.id.timer);
         time.setBase(SystemClock.elapsedRealtime());
         time.start();
+        inProgress = Boolean.TRUE;
     }
     /**
      * Reset scores.
@@ -313,6 +319,7 @@ public class MainActivity extends AppCompatActivity {
         Chronometer time = findViewById(R.id.timer);
         time.setBase(SystemClock.elapsedRealtime());
         time.stop();
+        inProgress = Boolean.FALSE;
         /**
          * Reset Livetext
          */

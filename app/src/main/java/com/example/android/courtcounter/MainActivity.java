@@ -4,7 +4,9 @@ import android.content.res.Resources;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -123,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         redCardsViewTeamB = (TextView) findViewById(R.id.team_b_red_card);
         liveTextView = (TextView) findViewById(R.id.live_text);
         time = findViewById(R.id.timer);
+        disableButtons();
     }
 
     @Override
@@ -279,16 +282,25 @@ public class MainActivity extends AppCompatActivity {
         if (getTeamB(view).length()>0) {
             teamB = getTeamB(view);
         }
+
+        // Update LiveText
         updateLiveText(res.getString(R.string.match_begins, teamA, teamB));
+
+        //Start the time
         Chronometer time = findViewById(R.id.timer);
         time.setBase(SystemClock.elapsedRealtime());
         time.start();
         inProgress = Boolean.TRUE;
+
+        // Enable the Buttons
+        enableButtons();
     }
     /**
      * Reset scores.
      */
     public void resetScore(View view) {
+        // Enable the Buttons
+        disableButtons();
         goalsTeamA = 0;
         displayScoreTeamA(goalsTeamA);
         goalsTeamB = 0;
@@ -425,5 +437,113 @@ public class MainActivity extends AppCompatActivity {
     public void updateLiveText (CharSequence text) {
         liveText = text + "\n" + liveTextView.getText();
         liveTextView.setText(liveText);
+    }
+
+    /**
+     * Disable the buttons until the Start button hit or an reset
+     */
+    public void disableButtons() {
+        int disabledColor = res.getColor(R.color.disabled_button_text_color);
+        // Disable the Goal Buttons
+        Button goalTeamAButton = (Button) findViewById(R.id.team_a_goal_button);
+        goalTeamAButton.setEnabled(Boolean.FALSE);
+        goalTeamAButton.setTextColor(disabledColor);
+        Button goalTeamBButton = (Button) findViewById(R.id.team_b_goal_button);
+        goalTeamBButton.setEnabled(Boolean.FALSE);
+        goalTeamBButton.setTextColor(disabledColor);
+
+        // Disable the Shot Buttons
+        Button shotTeamAButton = (Button) findViewById(R.id.team_a_shot_button);
+        shotTeamAButton.setEnabled(Boolean.FALSE);
+        shotTeamAButton.setTextColor(disabledColor);
+        Button shotTeamBButton = (Button) findViewById(R.id.team_b_shot_button);
+        shotTeamBButton.setEnabled(Boolean.FALSE);
+        shotTeamBButton.setTextColor(disabledColor);
+
+        // Disable the Shot on goal Buttons
+        Button shotOnGoalTeamAButton = (Button) findViewById(R.id.team_a_shot_on_goal_button);
+        shotOnGoalTeamAButton.setEnabled(Boolean.FALSE);
+        shotOnGoalTeamAButton.setTextColor(disabledColor);
+        Button shotOnGoalTeamBButton = (Button) findViewById(R.id.team_b_shot_on_goal_button);
+        shotOnGoalTeamBButton.setEnabled(Boolean.FALSE);
+        shotOnGoalTeamBButton.setTextColor(disabledColor);
+
+        // Disable the Foul Buttons
+        Button foulTeamAButton = (Button) findViewById(R.id.team_a_foul_button);
+        foulTeamAButton.setEnabled(Boolean.FALSE);
+        foulTeamAButton.setTextColor(disabledColor);
+        Button foulTeamBButton = (Button) findViewById(R.id.team_b_foul_button);
+        foulTeamBButton.setEnabled(Boolean.FALSE);
+        foulTeamBButton.setTextColor(disabledColor);
+
+        // Disable the Yellow Card Buttons
+        Button yellowCardTeamAButton = (Button) findViewById(R.id.team_a_yellow_card_button);
+        yellowCardTeamAButton.setEnabled(Boolean.FALSE);
+        yellowCardTeamAButton.setTextColor(disabledColor);
+        Button yellowCardTeamBButton = (Button) findViewById(R.id.team_b_yellow_card_button);
+        yellowCardTeamBButton.setEnabled(Boolean.FALSE);
+        yellowCardTeamBButton.setTextColor(disabledColor);
+
+        // Disable the Yellow Card Buttons
+        Button redCardTeamAButton = (Button) findViewById(R.id.team_a_red_card_button);
+        redCardTeamAButton.setEnabled(Boolean.FALSE);
+        redCardTeamAButton.setTextColor(disabledColor);
+        Button redCardTeamBButton = (Button) findViewById(R.id.team_b_red_card_button);
+        redCardTeamBButton.setEnabled(Boolean.FALSE);
+        redCardTeamBButton.setTextColor(disabledColor);
+    }
+
+    /**
+     * Disable the buttons until the Start button hit or an reset
+     */
+    public void enableButtons() {
+        int enabledColor = res.getColor(R.color.text);
+        // Enable the Goal Buttons
+        Button goalTeamAButton = (Button) findViewById(R.id.team_a_goal_button);
+        goalTeamAButton.setEnabled(Boolean.TRUE);
+        goalTeamAButton.setTextColor(enabledColor);
+        Button goalTeamBButton = (Button) findViewById(R.id.team_b_goal_button);
+        goalTeamBButton.setEnabled(Boolean.TRUE);
+        goalTeamBButton.setTextColor(enabledColor);
+
+        // Enable the Shot Buttons
+        Button shotTeamAButton = (Button) findViewById(R.id.team_a_shot_button);
+        shotTeamAButton.setEnabled(Boolean.TRUE);
+        shotTeamAButton.setTextColor(enabledColor);
+        Button shotTeamBButton = (Button) findViewById(R.id.team_b_shot_button);
+        shotTeamBButton.setEnabled(Boolean.TRUE);
+        shotTeamBButton.setTextColor(enabledColor);
+
+        // Enable the Shot on goal Buttons
+        Button shotOnGoalTeamAButton = (Button) findViewById(R.id.team_a_shot_on_goal_button);
+        shotOnGoalTeamAButton.setEnabled(Boolean.TRUE);
+        shotOnGoalTeamAButton.setTextColor(enabledColor);
+        Button shotOnGoalTeamBButton = (Button) findViewById(R.id.team_b_shot_on_goal_button);
+        shotOnGoalTeamBButton.setEnabled(Boolean.TRUE);
+        shotOnGoalTeamBButton.setTextColor(enabledColor);
+
+        // Enable the Foul Buttons
+        Button foulTeamAButton = (Button) findViewById(R.id.team_a_foul_button);
+        foulTeamAButton.setEnabled(Boolean.TRUE);
+        foulTeamAButton.setTextColor(enabledColor);
+        Button foulTeamBButton = (Button) findViewById(R.id.team_b_foul_button);
+        foulTeamBButton.setEnabled(Boolean.TRUE);
+        foulTeamBButton.setTextColor(enabledColor);
+
+        // Enable the Yellow Card Buttons
+        Button yellowCardTeamAButton = (Button) findViewById(R.id.team_a_yellow_card_button);
+        yellowCardTeamAButton.setEnabled(Boolean.TRUE);
+        yellowCardTeamAButton.setTextColor(enabledColor);
+        Button yellowCardTeamBButton = (Button) findViewById(R.id.team_b_yellow_card_button);
+        yellowCardTeamBButton.setEnabled(Boolean.TRUE);
+        yellowCardTeamBButton.setTextColor(enabledColor);
+
+        // Enable the Yellow Card Buttons
+        Button redCardTeamAButton = (Button) findViewById(R.id.team_a_red_card_button);
+        redCardTeamAButton.setEnabled(Boolean.TRUE);
+        redCardTeamAButton.setTextColor(enabledColor);
+        Button redCardTeamBButton = (Button) findViewById(R.id.team_b_red_card_button);
+        redCardTeamBButton.setEnabled(Boolean.TRUE);
+        redCardTeamBButton.setTextColor(enabledColor);
     }
 }

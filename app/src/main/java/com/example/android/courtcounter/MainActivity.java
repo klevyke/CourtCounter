@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity {
      * Chronometer variable
      */
     Chronometer time;
-    Boolean inProgress = Boolean.FALSE;
+    Boolean inProgress;
     /**
      * TextView variables
      */
@@ -125,7 +125,21 @@ public class MainActivity extends AppCompatActivity {
         redCardsViewTeamB = (TextView) findViewById(R.id.team_b_red_card);
         liveTextView = (TextView) findViewById(R.id.live_text);
         time = findViewById(R.id.timer);
-        disableButtons();
+        if (savedInstanceState != null) {
+            if (savedInstanceState.getBoolean(STATE_INPROGRESS)) {
+                time.setBase(savedInstanceState.getLong(STATE_TIME));
+                time.start();
+                enableButtons();
+                disableTeamInputs();
+                inProgress = Boolean.TRUE;
+            } else {
+                inProgress = Boolean.FALSE;
+            }
+        } else {
+            disableButtons();
+            enableTeamInputs();
+            inProgress = Boolean.FALSE;
+        }
     }
 
     @Override
@@ -183,10 +197,6 @@ public class MainActivity extends AppCompatActivity {
         displayRedCardsTeamA(redCardsTeamA);
         displayRedCardsTeamB(redCardsTeamB);
         updateLiveText(liveText);
-        if (savedInstanceState.getBoolean(STATE_INPROGRESS)) {
-            time.setBase(savedInstanceState.getLong(STATE_TIME));
-            time.start();
-        }
     }
     /**
      * Add points for Team A.
@@ -297,6 +307,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Enable the Buttons
             enableButtons();
+            disableTeamInputs();
         }
     }
     /**
@@ -305,6 +316,9 @@ public class MainActivity extends AppCompatActivity {
     public void resetScore(View view) {
         // Enable the Buttons
         disableButtons();
+        enableTeamInputs();
+
+        // Initialize the variables and update TextViews
         goalsTeamA = 0;
         displayScoreTeamA(goalsTeamA);
         goalsTeamB = 0;
@@ -339,8 +353,8 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Reset Livetext
          */
-        TextView scoreView = (TextView) findViewById(R.id.live_text);
-        scoreView.setText("");
+        liveText = "";
+        liveTextView.setText(liveText);
     }
     /**
      * Displays the given score for Team A.
@@ -446,7 +460,7 @@ public class MainActivity extends AppCompatActivity {
     /**
      * Disable the buttons until the Start button hit or an reset
      */
-    public void disableButtons() {
+    private void disableButtons() {
         int disabledColor = res.getColor(R.color.disabled_button_text_color);
         // Disable the Goal Buttons
         Button goalTeamAButton = (Button) findViewById(R.id.team_a_goal_button);
@@ -498,9 +512,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     /**
-     * Disable the buttons until the Start button hit or an reset
+     * Enable the buttons @ Start button hit
      */
-    public void enableButtons() {
+    private void enableButtons() {
         int enabledColor = res.getColor(R.color.text);
         // Enable the Goal Buttons
         Button goalTeamAButton = (Button) findViewById(R.id.team_a_goal_button);
@@ -549,5 +563,29 @@ public class MainActivity extends AppCompatActivity {
         Button redCardTeamBButton = (Button) findViewById(R.id.team_b_red_card_button);
         redCardTeamBButton.setEnabled(Boolean.TRUE);
         redCardTeamBButton.setTextColor(enabledColor);
+    }
+
+    /**
+     * Disable the team name inputs and make it not focusable
+     */
+    private void disableTeamInputs() {
+        EditText teamA = (EditText) findViewById(R.id.team_a);
+        teamA.setEnabled(Boolean.FALSE);
+        teamA.setFocusable(Boolean.FALSE);
+        EditText teamB = (EditText) findViewById(R.id.team_b);
+        teamB.setEnabled(Boolean.FALSE);
+        teamB.setFocusable(Boolean.FALSE);
+    }
+
+    /**
+     * Disable the team name inputs and make it focusable (normal and touch mode)
+     */
+    private void enableTeamInputs() {
+        EditText teamA = (EditText) findViewById(R.id.team_a);
+        teamA.setEnabled(Boolean.TRUE);
+        teamA.setFocusableInTouchMode(Boolean.TRUE);
+        EditText teamB = (EditText) findViewById(R.id.team_b);
+        teamB.setEnabled(Boolean.TRUE);
+        teamB.setFocusableInTouchMode(Boolean.TRUE);
     }
 }

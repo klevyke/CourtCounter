@@ -1,20 +1,17 @@
 package com.example.android.courtcounter;
 
-import android.content.res.Resources;
 import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import java.util.Set;
-
 public class MainActivity extends AppCompatActivity {
 
+    // constants used to save variables on state changes
     static final String STATE_SCORETEAMA = "goalsTeamA";
     static final String STATE_SCORETEAMB = "goalsTeamB";
     static final String STATE_SHOTSTEAMA = "shotsTeamA";
@@ -77,9 +74,12 @@ public class MainActivity extends AppCompatActivity {
      */
     CharSequence liveText = "";
     /**
-     * Chronometer variable
+     * Chronometer variable for timer
      */
     Chronometer time;
+    /**
+     * A variable that indicates if the match is in progress or not
+     */
     Boolean inProgress;
     /**
      * TextView variables
@@ -125,20 +125,46 @@ public class MainActivity extends AppCompatActivity {
         redCardsViewTeamB = (TextView) findViewById(R.id.team_b_red_card);
         liveTextView = (TextView) findViewById(R.id.live_text);
         time = findViewById(R.id.timer);
+
+        // Check if we have saved variables
         if (savedInstanceState != null) {
+
+            // Check if the game is in progress
             if (savedInstanceState.getBoolean(STATE_INPROGRESS)) {
+
+                // Start the timer from the saved time
                 time.setBase(savedInstanceState.getLong(STATE_TIME));
                 time.start();
+
+                // Enable the buttons
                 enableButtons();
+
+                // Disable team name input
                 disableTeamInputs();
+
+                // Restore the inProgress variable
                 inProgress = Boolean.TRUE;
             } else {
+
+                // Restore the inProgress variable
                 inProgress = Boolean.FALSE;
+
+                // Disable buttons
+                disableButtons();
+
+                // Enable team name inputs
+                enableTeamInputs();
             }
         } else {
-            disableButtons();
-            enableTeamInputs();
+
+            // Restore the inProgress variable
             inProgress = Boolean.FALSE;
+
+            // Disable buttons
+            disableButtons();
+
+            // Enable team name inputs
+            enableTeamInputs();
         }
     }
 
@@ -147,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
 
-        // Save the user's current score state
+        // Save the variables
         savedInstanceState.putInt(STATE_SCORETEAMA, goalsTeamA);
         savedInstanceState.putInt(STATE_SCORETEAMB, goalsTeamB);
         savedInstanceState.putInt(STATE_SHOTSTEAMA, shotsTeamA);
@@ -161,8 +187,10 @@ public class MainActivity extends AppCompatActivity {
         savedInstanceState.putInt(STATE_REDCARDSTEAMA, redCardsTeamA);
         savedInstanceState.putInt(STATE_REDCARDSTEAMB, redCardsTeamB);
         savedInstanceState.putCharSequence(STATE_LIVETEXT, liveText);
-        savedInstanceState.putLong(STATE_TIME, time.getBase());
         savedInstanceState.putBoolean(STATE_INPROGRESS, inProgress);
+
+        // Save the current time of the Chronometer
+        savedInstanceState.putLong(STATE_TIME, time.getBase());
     }
 
     public void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -184,6 +212,7 @@ public class MainActivity extends AppCompatActivity {
         redCardsTeamB = savedInstanceState.getInt(STATE_REDCARDSTEAMB);
         liveText = savedInstanceState.getCharSequence(STATE_LIVETEXT);
 
+        // Restore the TextViews value
         displayScoreTeamA(goalsTeamA);
         displayScoreTeamB(goalsTeamB);
         displayShotsTeamA(shotsTeamA);
@@ -203,10 +232,12 @@ public class MainActivity extends AppCompatActivity {
      */
     public void scoreTeamA (View view) {
         goalsTeamA = goalsTeamA + 1;
-        shotsOnGoalTeamA = shotsOnGoalTeamA + 1;
         String currentTime = getTime(view);
         updateLiveText(res.getString(R.string.scored, currentTime, teamA));
         displayScoreTeamA(goalsTeamA);
+
+        // We increase the Shot on goal on scoring not just the goals
+        shotsOnGoalTeamA = shotsOnGoalTeamA + 1;
         displayShotsOnGoalTeamA(shotsOnGoalTeamA);
     }
     public void shotTeamA (View view) {
@@ -244,10 +275,12 @@ public class MainActivity extends AppCompatActivity {
      */
     public void scoreTeamB (View view) {
         goalsTeamB = goalsTeamB + 1;
-        shotsOnGoalTeamB = shotsOnGoalTeamB + 1;
         String currentTime = getTime(view);
         updateLiveText(res.getString(R.string.scored, currentTime, teamB));
         displayScoreTeamB(goalsTeamB);
+
+        // We increase the Shot on goal on scoring not just the goals
+        shotsOnGoalTeamB = shotsOnGoalTeamB + 1;
         displayShotsOnGoalTeamB(shotsOnGoalTeamB);
     }
     public void shotTeamB (View view) {
@@ -300,9 +333,9 @@ public class MainActivity extends AppCompatActivity {
             updateLiveText(res.getString(R.string.match_begins, teamA, teamB));
 
             //Start the time
-            Chronometer time = findViewById(R.id.timer);
             time.setBase(SystemClock.elapsedRealtime());
             time.start();
+
             inProgress = Boolean.TRUE;
 
             // Enable the Buttons
@@ -461,6 +494,7 @@ public class MainActivity extends AppCompatActivity {
      * Disable the buttons until the Start button hit or an reset
      */
     private void disableButtons() {
+        // Get the color of the disabled button
         int disabledColor = res.getColor(R.color.disabled_button_text_color);
         // Disable the Goal Buttons
         Button goalTeamAButton = (Button) findViewById(R.id.team_a_goal_button);
@@ -515,6 +549,7 @@ public class MainActivity extends AppCompatActivity {
      * Enable the buttons @ Start button hit
      */
     private void enableButtons() {
+        // Get the color of normal text
         int enabledColor = res.getColor(R.color.text);
         // Enable the Goal Buttons
         Button goalTeamAButton = (Button) findViewById(R.id.team_a_goal_button);
